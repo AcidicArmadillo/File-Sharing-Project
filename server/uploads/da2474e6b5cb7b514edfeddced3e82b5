@@ -1,0 +1,83 @@
+#pragma GCC optimize("O3,unroll-loops")
+
+#include <unistd.h>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define int long long
+#define endl "\n"
+#define rep(j, n) for (int j = 0; j < n; ++j)
+#define ull unsigned long long
+#define ll long long int
+#define D 320
+#define f(i, a, b) for (int i = a; i < b; i++)
+#define dd double
+#define pb push_back
+
+int power(int x, int n)
+{
+   int result = 1;
+   while (n > 0)
+   {
+      if (n & 1 == 1)
+         result *= x;
+      x *= x;
+      n >>= 1;
+   }
+   return result;
+} // O(log n)
+
+int powerMod(int x, unsigned int y, int p)
+{
+   int res = 1;
+   x = x % p;
+   if (x == 0)
+      return 0;
+   while (y > 0)
+   {
+      if (y & 1)
+         res = (res * x) % p;
+      y = y >> 1;
+      x = (x * x) % p;
+   }
+   return res;
+} // O(log y)
+
+//------------टेम्प्लेट समाप्त -------------//
+
+void solve()
+{
+   int n, m;
+   cin >> n >> m;
+   if(m==1)
+   {
+      cout << 0 << endl;
+      rep(i, n) cout << 0 << endl;
+      return;
+   }
+   int k=min(n+1, m);
+   cout << k << endl;
+   rep(i, n)
+   {
+      int x=min(i, k-2);
+      rep(j, m)
+      {
+         cout << x++ << " ";
+         if(x==m) x=0;
+      }
+      cout << endl;
+   }
+}
+
+signed main()
+{
+#ifndef ONLINE_JUDGE
+   freopen("input.txt", "r", stdin);
+   freopen("output.txt", "w", stdout);
+#endif
+   int t = 1;
+   cin >> t;
+   while (t--)
+      solve();
+}
